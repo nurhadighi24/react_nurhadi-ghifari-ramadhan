@@ -1,1 +1,0 @@
-Latihan - Introduction FE : https://docs.google.com/document/d/1oG67hyDb8LhrlDoaqpa7_o18VMInOBSS4x3yTtE55Ig/edit?usp=sharing

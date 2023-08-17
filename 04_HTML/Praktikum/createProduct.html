@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+</head>
+<body>
+    <a href="landingPage.html">Penyambung ke Create Product</a>
+    <h1>Create Product</h1>
+    <h2>Detail Product</h2>
+
+    <form>
+        <div>
+            <label>Product Name:</label>
+            <br>
+            <input type="text" pattern=".{6,50}" required title="Product Name harus diisi antara 6 sampai 50 huruf">
+        </div>
+
+        <div>
+            <label>Product Category:</label>
+            <br>
+            <select name="" id="">
+                <option value="">makanan</option>
+                <option value="">minuman</option>
+                <option value="">dessert</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="">Product Freshness:</label>
+            <br>
+            <input type="radio">
+            <label for="">Brand New</label>
+            <br>
+            <input type="radio">
+            <label for="">Second Hank</label>
+            <br>
+            <input type="radio">
+            <label for="">Refurbished</label>
+        </div>
+
+        <div>
+            <p>Image of Product <input type="file" id="fileUpload" name="fileUpload"></p>
+        </div>
+
+        <div>
+            <label for="">Additional Description</label>
+            <br>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+        </div>
+
+        <div>
+            <label for="">Product Price:</label>
+            <br>
+            <input type="text" placeholder="$ 100" pattern="[0-9]+" required title="Product price harus berupa angka">
+        </div>
+
+        <input type="submit">
+    </form>
+</body>
+</html>

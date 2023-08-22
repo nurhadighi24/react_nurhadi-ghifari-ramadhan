@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+.content-main {
+    padding-left: 25rem !important;
+    padding-right: 25rem !important;
+}
+
+.content-main h1 {
+    font-weight: 500;
+    font-size: 31px;
+    font-family: "Roboto", sans-serif;
+}
+
+.content-main h4 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.form {
+    padding-left: 15rem !important;
+    padding-right: 15rem !important;
+}
+
+.form-select {
+    width: 25%;
+}
+
+.input-group {
+    width: 50% !important;
+}
+
+#productPrice {
+    width: 100% !important;
+}
+
+#btn-submit {
+    width: 75% !important;
+}

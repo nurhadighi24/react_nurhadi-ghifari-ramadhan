@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Create Product</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Simple header</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Features</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-pricing-tab" data-bs-toggle="pill" data-bs-target="#pills-pricing" type="button" role="tab" aria-controls="pills-pricing" aria-selected="false">Pricing</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-faqs-tab" data-bs-toggle="pill" data-bs-target="#pills-faqs" type="button" role="tab" aria-controls="pills-faqs" aria-selected="false">FAQs</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" type="button" role="tab" aria-controls="pills-about" aria-selected="false">About</button>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+
+      <section class="content-main">
+        <div class="contente-main-bg text-center">
+            <img src="bootstrap-logo.svg.png" alt="bootstrap-logo">
+            <h1 class="mt-4 mb-4">Create Product</h1>
+            <h4>Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</h4>
+        </div>
+
+        <section class="form mt-5">
+          
+          <form class="needs-validation" novalidate>
+              <h5>Detail Product</h5>
+
+              <div class="mb-4">
+                <label for="productName" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="productName" aria-describedby="emailHelp" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Enter Product Name" value="" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+
+              <div class="mb-4">
+                  <label for="productCategory" class="form-label">Product Category</label>
+                  <select class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option>...</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid state.
+                  </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="imageOfProduct" class="form-label">Image Of Product</label>
+                <div class="input-group mb-3">
+                  <input type="file" class="form-control" id="inputGroupFile01" style="color: #0D6EFD; border-color: #0D6EFD;">
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="productFreshness" class="form-label">Product Freshness</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Brand New
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Second Hand
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                  <label class="form-check-label" for="flexRadioDefault3">
+                    Refurbished
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="additionalDescription" class="form-label">Additional Description</label>
+                <div class="form-floating">
+                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 116px; width: 100%;"></textarea>
+                  <label for="floatingTextarea"></label>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="productPrice" class="form-label">Product Price</label>
+                <div id="alertMessagePrice"></div>
+                <input type="text" class="form-control" id="productPrice" aria-describedby="" placeholder="$ 1" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Enter Product Price" pattern="[0-9]+" required>
+              </div>
+
+              <div class="my-5 text-center">
+                <input class="btn btn-primary" type="submit" id="btn-submit">
+              </div>
+
+              
+            </form>
+          </section>
+
+      </section>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+      <script src="index.js"></script>
+</body>
+</html>

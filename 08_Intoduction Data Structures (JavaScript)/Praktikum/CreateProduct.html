@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Create Product</title>
+</head>
+<body>
+    <h1>Create Product</h1>
+    <h2>Detail Product</h2>
+
+    <form>
+        <div>
+            <label for="productName">Product Name:</label>
+            <br>
+            <input id="productName" type="text">
+        </div>
+
+        <div>
+            <label>Product Category:</label>
+            <br>
+            <select name="productCategory" id="productCategory">
+                <option value=""></option>
+                <option value="makanan">makanan</option>
+                <option value="minuman">minuman</option>
+                <option value="dessert">dessert</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="">Product Freshness:</label>
+            <br>
+            <input type="radio" name="productFreshness" value="Brand New"> Brand New
+            <br>
+            <input type="radio" name="productFreshness" value="Second Hand"> Second Hand
+            <br>
+            <input type="radio" name="productFreshness" value="Refurbished"> Refurbished
+        </div>
+
+        <div>
+            <p>Image of Product <input type="file" id="fileUpload" name="fileUpload"></p>
+        </div>
+
+        <div>
+            <label for="">Additional Description</label>
+            <br>
+            <textarea name="additionalDescription" id="additionalDescription" cols="30" rows="10"></textarea>
+        </div>
+
+        <div>
+            <label for="">Product Price:</label>
+            <br>
+            <input type="text" placeholder="$ 100" id="productPrice">
+        </div>
+
+        <input type="submit" id="btnSubmit">
+
+        
+    </form>
+    <div id="table">Table</div>
+
+    <input type="text" placeholder="Search By Product Name" id="searchInput">
+    <button id="btnDelete">Delete</button>
+    <button id="btnSearch">Search</button>
+    <script src="index.js"></script>
+</body>
+</html>

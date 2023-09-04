@@ -131,7 +131,10 @@ searchProduct = () => {
         const filteredProducts = products.filter(product => product.productName.toLowerCase().includes(searchInputed));
         
         updateTable(filteredProducts);
-        console.log(filteredProducts)
+        alert(
+            `
+            Product Name : ${filteredProducts[0].productName}
+            `);
     });
 
     

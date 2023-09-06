@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#h1-jumbo {
+  top: 30% !important;
+}
+
+#h2-jumbo {
+  top: 40% !important;
+}
+
+#btn-jumbo {
+  top: 50% !important;
+}

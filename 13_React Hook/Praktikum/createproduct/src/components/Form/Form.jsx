@@ -10,7 +10,7 @@ export default function Form() {
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productPrice, setProductPrice] = useState("");
-  const [selectedOption, setSelectedOption] = useState("Not Selected");
+  const [selectedOption, setSelectedOption] = useState("");
   const [products, setProducts] = useState([]);
   const [nextId, setNextId] = useState(1);
 
@@ -37,6 +37,10 @@ export default function Form() {
 
       const dupeProducts = [...products, product];
       setProducts(dupeProducts);
+      setProductCategory("");
+      setProductName("");
+      setProductPrice("");
+      setSelectedOption("");
     } else {
       alert("Please enter a valid product name.");
     }
@@ -61,7 +65,7 @@ export default function Form() {
         <Input
           type="text"
           label="Product Name"
-          defaultValue={productName}
+          value={productName}
           onChange={handleChange}
         />
         <Select
@@ -69,6 +73,7 @@ export default function Form() {
           placeholder="Choose..."
           onChange={(e) => setProductCategory(e.target.value)}
           options={["Makanan", "Minuman", "Dessert"]}
+          value={productCategory}
         />
 
         <p className="font-bold">Product Freshness</p>
@@ -98,7 +103,7 @@ export default function Form() {
           label="Product Price"
           type="number"
           placeholder="$1"
-          defaultValue={productPrice}
+          value={productPrice}
           onChange={(e) => setProductPrice(e.target.value)}
         />
         <Button type="submit" label="Submit" />

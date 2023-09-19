@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "../Button/Button";
 
 export default function LandingPage() {
+  useEffect(() => {
+    window.alert("Welcome");
+  }, []);
   return (
     <>
       <div className="flex items-center justify-center bg-cyan-950">

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import FormTitle from "./FormTitle";
 import { Input, Select, RadioInput } from "./Input/Input";
@@ -13,6 +13,21 @@ export default function Form() {
   const [selectedOption, setSelectedOption] = useState("");
   const [products, setProducts] = useState([]);
   const [nextId, setNextId] = useState(1);
+
+  function saveProductsToLocalStorage(products) {
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+
+  useEffect(() => {
+    const savedProducts = localStorage.getItem("products");
+    if (savedProducts) {
+      setProducts(JSON.parse(savedProducts));
+    }
+  }, []);
+
+  useEffect(() => {
+    saveProductsToLocalStorage(products);
+  }, [products]);
 
   function handleChange(e) {
     const newValue = e.target.value;

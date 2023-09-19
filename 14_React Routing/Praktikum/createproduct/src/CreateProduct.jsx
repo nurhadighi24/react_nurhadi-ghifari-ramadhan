@@ -11,10 +11,6 @@ import RandomNumber from "./utils/RandomNumber";
 function CreateProduct() {
   const [currentLanguage, setCurrentLanguage] = useState("en");
 
-  useEffect(() => {
-    window.alert("Welcome");
-  }, []);
-
   const changeLanguage = () => {
     setCurrentLanguage(currentLanguage === "en" ? "id" : "en");
   };

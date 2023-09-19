@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from "../../Button/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Table({
   headers = [],
@@ -23,13 +23,12 @@ export default function Table({
       </thead>
       <tbody className="text-center">
         {datas.map((data, index) => (
-          <tr key={data.id} className="">
-            <td
-              className="border-4 border-sky-500"
-              onClick={() => navigate(`/create-product/${data.id}`)}
-            >
-              {index + 1}
-            </td>
+          <tr
+            key={data.id}
+            className=""
+            onClick={() => navigate(`/create-product/${data.id}`)}
+          >
+            <td className="border-4 border-sky-500">{index + 1}</td>
             <td className="border-4 border-sky-500">{data.productName}</td>
             <td className="border-4 border-sky-500">{data.productCategory}</td>
             <td className="border-4 border-sky-500">{data.selectedOption}</td>

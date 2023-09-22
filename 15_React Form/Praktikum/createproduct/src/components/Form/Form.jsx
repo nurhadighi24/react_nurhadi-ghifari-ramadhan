@@ -15,31 +15,23 @@ export default function Form() {
   const [products, setProducts] = useState([]);
   const [nextId, setNextId] = useState(1);
 
-  function handleImageChange(e) {
-    const selectedImage = e.target.files[0];
-    setProductImage(selectedImage);
-  }
-
-  function saveProductsToLocalStorage(products) {
-    const productsToSave = products.map((product) => ({
-      ...product,
-      productImage: product.productImage
-        ? URL.createObjectURL(product.productImage)
-        : null,
-    }));
-    localStorage.setItem("products", JSON.stringify(productsToSave));
-  }
-
   useEffect(() => {
-    const savedProducts = localStorage.getItem("products");
-    if (savedProducts) {
-      setProducts(JSON.parse(savedProducts));
-    }
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    saveProductsToLocalStorage(products);
-  }, [products]);
+  function fetchData() {
+    setProducts(getProducts());
+  }
+
+  function getProducts() {
+    const getItem = localStorage.getItem("products");
+
+    if (getItem) {
+      const parseProducts = JSON.parse(getItem);
+      return parseProducts;
+    }
+    return [];
+  }
 
   function isProductNameValid(name) {
     const regex = /^.{1,25}$/;
@@ -68,12 +60,13 @@ export default function Form() {
         productCategory: productCategory,
         productPrice: productPrice,
         productFreshness: productFreshness,
-        productImage: productImage,
+        productImage: URL.createObjectURL(productImage),
       };
       setNextId(nextId + 1);
 
       const dupeProducts = [...products, product];
       setProducts(dupeProducts);
+      localStorage.setItem("products", JSON.stringify(dupeProducts));
       setProductCategory("");
       setProductName("");
       setProductPrice("");
@@ -87,6 +80,7 @@ export default function Form() {
 
     if (confirmDelete) {
       const updatedProducts = products.filter((product) => product.id !== id);
+      localStorage.setItem("products", JSON.stringify(updatedProducts));
       setProducts(updatedProducts);
     }
   }
@@ -136,7 +130,10 @@ export default function Form() {
           onChange={handleRadioChange}
         />
 
-        <Input type="file" accept="image/*" onChange={handleImageChange} />
+        <Input
+          type="file"
+          onChange={(e) => setProductImage(e.target.files[0])}
+        />
 
         <Input
           label="Product Price"

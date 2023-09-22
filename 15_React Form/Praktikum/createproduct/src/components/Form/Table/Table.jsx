@@ -38,7 +38,7 @@ export default function Table({
             <td className="border-2 border-sky-500">
               {data.productImage && (
                 <img
-                  src={URL.createObjectURL(data.productImage)}
+                  src={data.productImage}
                   alt="Product"
                   className=" w-full"
                 />

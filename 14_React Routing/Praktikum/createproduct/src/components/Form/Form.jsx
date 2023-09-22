@@ -14,20 +14,23 @@ export default function Form() {
   const [products, setProducts] = useState([]);
   const [nextId, setNextId] = useState(1);
 
-  function saveProductsToLocalStorage(products) {
-    localStorage.setItem("products", JSON.stringify(products));
-  }
-
   useEffect(() => {
-    const savedProducts = localStorage.getItem("products");
-    if (savedProducts) {
-      setProducts(JSON.parse(savedProducts));
-    }
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    saveProductsToLocalStorage(products);
-  }, [products]);
+  function fetchData() {
+    setProducts(getProducts());
+  }
+
+  function getProducts() {
+    const getItem = localStorage.getItem("products");
+
+    if (getItem) {
+      const parseProducts = JSON.parse(getItem);
+      return parseProducts;
+    }
+    return [];
+  }
 
   function handleChange(e) {
     const newValue = e.target.value;
@@ -52,6 +55,7 @@ export default function Form() {
 
       const dupeProducts = [...products, product];
       setProducts(dupeProducts);
+      localStorage.setItem("products", JSON.stringify(dupeProducts));
       setProductCategory("");
       setProductName("");
       setProductPrice("");
@@ -66,6 +70,7 @@ export default function Form() {
 
     if (confirmDelete) {
       const updatedProducts = products.filter((product) => product.id !== id);
+      localStorage.setItem("products", JSON.stringify(updatedProducts));
       setProducts(updatedProducts);
     }
   }

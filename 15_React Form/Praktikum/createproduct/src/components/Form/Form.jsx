@@ -1,19 +1,46 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 import FormTitle from "./FormTitle";
 import { Input, Select, RadioInput } from "./Input/Input";
 import Button from "../Button/Button";
 import Table from "./Table/Table";
 
+const schema = z.object({
+  productName: z
+    .string()
+    .min(1, { message: "Please enter a valid product name" })
+    .max(25, { message: "Last name must not exceed 25 characters" }),
+  productCategory: z
+    .string()
+    .min(1, { message: "Please select a product category" }),
+  productFreshness: z
+    .string()
+    .min(1, { message: "Please select a product freshness" }),
+  productPrice: z
+    .string()
+    .min(1, { message: "Product price is required" })
+    .refine((value) => !Number.isNaN(parseInt(value)), {
+      message: "Product price must be a number",
+    }),
+});
+
 export default function Form() {
-  const [productName, setProductName] = useState("");
-  const [productCategory, setProductCategory] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productFreshness, setProductFreshness] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [products, setProducts] = useState([]);
   const [nextId, setNextId] = useState(1);
+
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
   useEffect(() => {
     fetchData();
@@ -33,45 +60,21 @@ export default function Form() {
     return [];
   }
 
-  function isProductNameValid(name) {
-    const regex = /^.{1,25}$/;
-    return regex.test(name);
-  }
-
-  function isProductInputValid(choose) {
-    const regex = /^.+$/;
-    return regex.test(choose);
-  }
-
-  function handleSubmitPost(e) {
-    e.preventDefault();
-    if (!isProductNameValid(productName)) {
-      alert(
-        "Please enter a valid product name and Last Name must not exceed 25 characters."
-      );
-    } else if (!isProductInputValid(productCategory && productFreshness)) {
-      alert("Please choose Product Category and Product Freshness!");
-    } else if (!productImage) {
-      alert("Choose Image Product!");
+  function handleSubmitProduct(data) {
+    if (!productImage) {
+      alert("Please select a product image");
     } else {
       const product = {
+        ...data,
         id: nextId,
-        productName: productName,
-        productCategory: productCategory,
-        productPrice: productPrice,
-        productFreshness: productFreshness,
         productImage: URL.createObjectURL(productImage),
       };
+
       setNextId(nextId + 1);
 
       const dupeProducts = [...products, product];
       setProducts(dupeProducts);
       localStorage.setItem("products", JSON.stringify(dupeProducts));
-      setProductCategory("");
-      setProductName("");
-      setProductPrice("");
-      setProductFreshness("");
-      setProductImage(null);
     }
   }
 
@@ -85,65 +88,66 @@ export default function Form() {
     }
   }
 
-  const handleRadioChange = (e) => {
-    setProductFreshness(e.target.value);
-  };
-
   return (
     <>
-      <form className="text-center mt-5" onSubmit={handleSubmitPost}>
+      <form
+        className="text-center mt-5"
+        onSubmit={handleSubmit(handleSubmitProduct)}
+      >
         <FormTitle title="Detail Product" />
         <Input
+          register={register}
           type="text"
           label="Product Name"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
+          name="productName"
+          error={errors.productName?.message}
         />
         <Select
+          register={register}
+          name="productCategory"
           label="Product Category"
           placeholder="Choose..."
-          onChange={(e) => setProductCategory(e.target.value)}
           options={["Makanan", "Minuman", "Dessert"]}
-          value={productCategory}
+          error={errors.productCategory?.message}
         />
 
         <p className="font-bold">Product Freshness</p>
         <RadioInput
+          register={register}
           label="Brand New"
-          name="options"
           value="Brand New"
-          checked={productFreshness === "Brand New"}
-          onChange={handleRadioChange}
+          name="productFreshness"
         />
         <RadioInput
+          register={register}
           label="Second Hand"
-          name="options"
           value="Second Hand"
-          checked={productFreshness === "Second Hand"}
-          onChange={handleRadioChange}
+          name="productFreshness"
         />
         <RadioInput
+          register={register}
           label="Refurbished"
-          name="options"
           value="Refurbished"
-          checked={productFreshness === "Refurbished"}
-          onChange={handleRadioChange}
+          name="productFreshness"
         />
+        {errors.productFreshness?.message}
 
         <Input
+          label="Product Image"
           type="file"
           onChange={(e) => setProductImage(e.target.files[0])}
         />
 
         <Input
+          register={register}
           label="Product Price"
-          type="number"
-          placeholder="$1"
-          value={productPrice}
-          onChange={(e) => setProductPrice(e.target.value)}
+          type="text"
+          name="productPrice"
+          error={errors.productPrice?.message}
         />
         <Button type="submit" label="Submit" />
       </form>
+
       <Table
         headers={[
           "No",

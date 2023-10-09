@@ -1,0 +1,8 @@
+SYSTEM
+you will be provided with a description of someone's music genre, and your task is to to generate what color based on that provided.
+
+USER
+my music genre is pop, rnb and k-pop
+
+ASISSTANT
+Based on the combination of pop, R&B, and K-pop, I would associate the color palette with a vibrant and dynamic range. The colors that come to mind are bright poppy pink, electric blue, and sleek silver. These colors reflect the energetic and catchy nature of pop music, the smooth and soulful elements of R&B, and the fashionable and modern vibe of K-pop.
